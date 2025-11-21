@@ -1,39 +1,44 @@
 {
   "name": "axiom",
   "version": "1.0.0",
-  "description": "Axiom is a free and open-source, cross-platform Digital Asset Management (DAM) app that helps you organize your art and design assets all in one program!",
-  "main": "index.js",
+  "description": "A lightweight cross-platform Digital Asset Management app",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build:main && npm run build:preload && concurrently \"npm run watch:renderer\" \"npm run start:electron\"",
+    "watch:renderer": "webpack serve --config webpack.renderer.config.js",
+    "build:main": "webpack --config webpack.main.config.js",
+    "build:renderer": "webpack --config webpack.renderer.config.js",
+    "build:preload": "tsc src/main/preload.ts --outDir dist",
+    "build": "npm run build:main && npm run build:preload && npm run build:renderer",
+    "start:electron": "wait-on http://localhost:9000 && electron .",
+    "package": "npm run build && electron-builder"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/beahrnja/Axiom.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/beahrnja/Axiom/issues"
-  },
-  "homepage": "https://github.com/beahrnja/Axiom#readme",
+  "keywords": [
+    "electron",
+    "react",
+    "typescript",
+    "dam"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
-    "electron": "^39.2.3",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "electron": "^32.2.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/react": "^19.2.6",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "concurrently": "^9.2.1",
     "css-loader": "^7.1.2",
-    "electron-builder": "^26.0.12",
-    "html-webpack-plugin": "^5.6.5",
+    "electron-builder": "^25.1.8",
+    "html-webpack-plugin": "^5.6.3",
     "style-loader": "^4.0.0",
-    "ts-loader": "^9.5.4",
-    "typescript": "^5.9.3",
-    "webpack": "^5.103.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.2",
+    "wait-on": "^8.0.5",
+    "webpack": "^5.96.1",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.2"
+    "webpack-dev-server": "^5.1.0"
   }
 }
