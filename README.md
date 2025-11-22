@@ -5,7 +5,7 @@ Axiom is a free and open-source, cross-platform Digital Asset Management (DAM) a
 ## Goals
 
 I'm building Axiom with a few goals in mind:
-- Learning to program desktop apps with Electron.
+- Learning to program desktop apps with C++.
 - Create a solution to a problem I have with software like Adobe Bridge.
-- Leverage my design capabilities with HTML/CSS.
+- Leverage my design capabilities with GUI creation.
 - More goals to come!
